@@ -14,9 +14,6 @@ framework:
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
-          App\Message\SendEmailMessage: async    
-          App\Message\TestJobMessage: async
-          App\Message\TestJobMessageM: async
           App\Message\ProcessStepMessage: async
 # when@test:
 #    framework:

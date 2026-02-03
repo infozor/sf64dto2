@@ -29,57 +29,11 @@ class MyScheduleWorkerCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		$now = new \DateTimeImmutable();
-
-		/*
-		$jobs = $this->db->fetchAllAssociative("
-		 SELECT id, cron_expr, payload
-		 FROM scheduled_jobs
-		 WHERE active = 1
-		 ");
-		*/ 
-		
-		$Test = new Test2($output);
-		$jobs = $Test->get_schedulle_jobs();
-
-		
-		$jobs_ = [
-				[
-						'id' => 1,
-						'cron_expr' => '* * * * *'
-				],
-				[
-						'id' => 2,
-						'cron_expr' => '* * * * *'
-				]
-		];
 		
 		// Запускаем процесс
 		$this->orchestrator->startProcess(0, 'test_command', '123');
 
-		foreach ( $jobs as $job )
-		{
-			$cron = CronExpression::factory($job['cron_expr']);
-			//$cron = CronExpression::factory('* * * * *');
 
-			if ($cron->isDue($now))
-			{
-				
-				
-				
-				//$this->bus->dispatch(new SimpleMessage($job['payload']));
-				
-				
-				//
-				/*
-				$this->bus->dispatch(new TestJobMessageM(
-						jobId: $job['id'],
-						payload: ['payload' => $job['payload']]
-						));
-				*/		
-
-				$output->writeln("Queued job {$job['id']}");
-			}
-		}
 
 		return Command::SUCCESS;
 	}

@@ -23,37 +23,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-
-    App\Service\CampaignsGet:
-        arguments:
-            $token: '%env(YANDEX_DIRECT_TOKEN)%'
-            $login: '%env(YANDEX_DIRECT_LOGIN)%'
-            $useSandbox: '%env(bool:YANDEX_USE_SANDBOX)%'
-    
-    App\Service\CampaignGetDirect:
-      arguments:
-        $token: '%env(YANDEX_DIRECT_TOKEN)%'
-        $login: '%env(YANDEX_DIRECT_LOGIN)%'
-        $useSandbox: '%env(bool:YANDEX_USE_SANDBOX)%'
-        
-    App\ModuleProcess\Command\MyTestCommand:
-        arguments:
-            $projectDir: '%kernel.project_dir%'
-        tags:
-            - { name: 'console.command' }
-
-    App\ModuleProcess\Command\MyProcessCommand:
-        arguments:
-            $projectDir: '%kernel.project_dir%'
-        tags:
-            - { name: 'console.command' }
-                        
-#    App\ModuleProcess\Command\MyScheduleWorkerCommand:
-#        arguments:
-#            $projectDir: '%kernel.project_dir%'
-#        tags:
-#            - { name: 'console.command' }
-
    # Явно (не обязательно, но наглядно)
     App\ModuleProcess\Orchestrator\ProcessOrchestrator:
        public: false
