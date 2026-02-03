@@ -1,1 +1,1 @@
-php -dxdebug.start_with_request=yes D:\site2_sf\symfony7\sf64dto2\bin/console app:schedule:worker
+php -dxdebug.start_with_request=yes D:\site2_sf\symfony7\sf64dto2\bin/console app:scheduler:run
