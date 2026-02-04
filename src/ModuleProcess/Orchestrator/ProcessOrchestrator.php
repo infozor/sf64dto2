@@ -13,7 +13,7 @@ final class ProcessOrchestrator
 	public function __construct(private Connection $db, private MessageBusInterface $bus)
 	{
 	}
-	public function startProcess(string $processType, ?string $businessKey, array $payload): int
+	public function startProcess(string $processType, ?string $businessKey, array $payload, ?int $sourceJobId = null): int
 	{
 		$this->db->beginTransaction();
 
@@ -29,6 +29,7 @@ final class ProcessOrchestrator
 					'business_key' => $businessKey,
 					'status' => 'RUNNING',
 					'payload' => json_encode($payload),
+					'source_job_id' => $sourceJobId,
 					'started_at' => (new \DateTime())->format('Y-m-d H:i:s')
 			]);
 			$processId = ( int ) $this->db->lastInsertId();

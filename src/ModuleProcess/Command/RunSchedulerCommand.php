@@ -39,7 +39,7 @@ final class RunSchedulerCommand extends Command
 					$job['id']
 			]);
 
-			$this->orchestrator->startProcess($job['process_type'], $job['business_key'], json_decode($job['payload'], true));
+			$this->orchestrator->startProcess($job['process_type'], $job['business_key'], json_decode($job['payload'], true), (int) $job['id']);
 
 			$this->db->executeStatement('UPDATE scheduled_jobs SET status = ? WHERE id = ?', [
 					'DONE',
